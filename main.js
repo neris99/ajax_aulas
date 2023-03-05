@@ -47,11 +47,23 @@ $(document).ready(function(){
             const estado = json.uf;
             const endereco = `${logradouro}, ${bairro} - ${cidade} - ${estado}`;
             $('#endereco').val(endereco);
-
+        })
+        .catch(function(erro){
+            alert("Ocorreu um erro tente novamente mais tarde")
+        })
+        .finally(function(){
             setTimeout(function(){
                 $(botao).find('i').removeClass('d-none');
                 $(botao).find('span').addClass('d-none');
-            },3000)
+            },1000)
         })
+    })
+
+    $('#formulario-pedido').submit(function(evento){
+        evento.preventDefault();
+        
+        if($('#nome').val().length == 0){
+            throw new Error('Digite o nome');
+        }
     })
 })
